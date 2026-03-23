@@ -1,0 +1,18 @@
+# Binarios y ejecutables
+main
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Archivos de datos personales/pruebas
+results.csv
+
+# Logs y archivos temporales
+*.log
+tmp/
+
+# Configuración del IDE (opcional)
+.vscode/
+.idea/
