@@ -145,8 +145,13 @@ func main() {
 		tmpl.ExecuteTemplate(w, "table-body", globalStore.Data)
 	})
 
-	fmt.Println("Servidor iniciado en http://localhost:8045")
-	if err := http.ListenAndServe(":8045", nil); err != nil {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8045"
+	}
+
+	fmt.Printf("Servidor iniciado en el puerto %s\n", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
 		fmt.Printf("Error al levantar el servidor: %v\n", err)
 	}
 }
