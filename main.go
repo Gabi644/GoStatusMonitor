@@ -67,10 +67,16 @@ func performScan() {
 	fmt.Printf("[%s] Iniciando ciclo de monitoreo...\n", time.Now().Format("15:04:05"))
 
 	// Apertura dinámica para permitir modificaciones en caliente del listado de sitios
-	file, err := os.Open("sites.txt")
+	const RENDERPATH = "/etc/secrets/sites.txt"
+	const LOCALPATH = "sites.txt"
+
+	file, err := os.Open(RENDERPATH)
 	if err != nil {
-		fmt.Printf("Fallo crítico: No se pudo abrir sites.txt: %v\n", err)
-		return
+		file, err = os.Open(LOCALPATH)
+		if err != nil {
+			fmt.Printf("Fallo crítico: No se pudo abrir sites.txt: %v\n", err)
+			return
+		}
 	}
 	defer file.Close()
 

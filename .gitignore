@@ -8,6 +8,7 @@ main
 
 # Archivos de datos personales/pruebas
 results.csv
+sites.txt
 
 # Logs y archivos temporales
 *.log

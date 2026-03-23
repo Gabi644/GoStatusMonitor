@@ -1,7 +1,0 @@
-https://www.google.com
-https://1.1.1.1
-https://github.com
-https://www.wikipedia.org
-https://uv.frc.utn.edu.ar
-https://www.frc.utn.edu.ar
-https://a4.frc.utn.edu.ar
