@@ -2,9 +2,6 @@ https://www.google.com
 https://1.1.1.1
 https://github.com
 https://www.wikipedia.org
-https://www.amazon.com
-http://example.com
-https://www.utn.edu.ar
-http://httpbin.org/delay/2
-http://httpbin.org/status/404
-http://httpbin.org/delay/15
+https://uv.frc.utn.edu.ar
+https://www.frc.utn.edu.ar
+https://a4.frc.utn.edu.ar

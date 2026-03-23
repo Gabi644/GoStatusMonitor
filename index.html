@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SLA Monitor | Dashboard Técnico</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        body { font-family: "Consolas", "Monaco", monospace; background: #121212; color: #e0e0e0; padding: 2rem; }
+        h1 { color: #00ff9d; border-bottom: 2px solid #00ff9d; display: inline-block; }
+        table { width: 100%; border-collapse: collapse; margin-top: 2rem; background: #1e1e1e; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #252525; text-transform: uppercase; letter-spacing: 1px; }
+        .Activo { color: #00ff9d; text-shadow: 0 0 5px #00ff9d33; }
+        .Inactivo { color: #ff4b2b; text-shadow: 0 0 5px #ff4b2b33; }
+        .Timeout { color: #ffcc00; }
+        .latency-cell { font-style: italic; color: #888; }
+    </style>
+</head>
+<body>
+    <h1>SYSTEM_STATUS_MONITOR</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>RESOURCE_URL</th>
+                <th>STATUS_CODE</th>
+                <th>RESPONSE_TIME</th>
+            </tr>
+        </thead>
+        <tbody id="status-grid" 
+               hx-get="/results" 
+               hx-trigger="every 60s" 
+               hx-swap="innerHTML">
+            {{ block "table-body" . }}
+                {{ range . }}
+                <tr>
+                    <td>{{ .URL }}</td>
+                    <td class="{{ .Estado }}">{{ .Estado }}</td>
+                    <td class="latency-cell">{{ .Latencia }}</td>
+                </tr>
+                {{ end }}
+            {{ end }}
+        </tbody>
+    </table>
+    <p><small>>_ Auto-refresh activo cada 60.000ms</small></p>
+</body>
+</html>

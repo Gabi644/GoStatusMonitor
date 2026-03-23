@@ -1,14 +1,21 @@
-# Go Status Monitor
+# Go Real-time Status Monitor 🚀
 
-Un monitor de estado de sitios web de alto rendimiento diseñado para realizar chequeos de disponibilidad y latencia de forma concurrente. Este proyecto fue desarrollado como práctica profesional para profundizar en el modelo de concurrencia de Go y el manejo de contextos.
+Un servicio de monitoreo de infraestructura de alto rendimiento que combina un motor de escaneo concurrente en **Go** con una interfaz dinámica utilizando **HTMX**. El sistema realiza chequeos de salud constantes y actualiza un dashboard web sin necesidad de recargar la página.
 
-## 🚀 Características
+## 🏗️ Arquitectura del Sistema
 
-- **Concurrencia con Goroutines:** Procesa múltiples sitios en paralelo mediante el uso de `sync.WaitGroup`.
-- **Comunicación mediante Channels:** Sincronización segura de resultados entre hilos de ejecución.
-- **Gestión de Timeouts:** Implementación de `context.WithTimeout` para garantizar que el programa no se bloquee ante sitios lentos.
-- **Reporte CSV:** Generación automática de un informe con el estado (Activo/Caído/Timeout) y la latencia en milisegundos.
+El proyecto opera bajo un modelo de **doble motor asíncrono**:
+1. **Background Worker:** Una Goroutine dedicada que utiliza un `time.Ticker` para ejecutar escaneos cada 60 segundos. Utiliza `context.Context` para gestionar timeouts globales de red.
+2. **Web Server:** Un servidor HTTP nativo que sirve los datos almacenados en memoria. La integridad de los datos entre el escáner y el servidor se garantiza mediante un `sync.RWMutex` (bloqueo de lectura/escritura).
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Backend:** Go (Golang) con concurrencia nativa.
+- **Frontend:** HTML5 + CSS3 (Dark Mode) + **HTMX** (para el polling asíncrono).
+- **Persistencia:** Archivo CSV local para auditoría y backup de cada ciclo.
+- **Sincronización:** `sync.WaitGroup` y `channels` para la orquestación de hilos.
 
 ## 📋 Requisitos
 
-- Go 1.20 o superior.
+- Go 1.20 o superior instalado.
+- Archivo `sites.txt` en la raíz con las URLs a monitorear.
